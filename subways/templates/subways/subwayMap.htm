@@ -1,0 +1,105 @@
+﻿{% load i18n %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Subway Map</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}jquery.subwayMap-0.5.0.js"></script>
+    <style type="text/css">
+    body
+    {
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+
+    /* The main DIV for the map */
+    .subway-map
+    {
+        margin: 0;
+        width: 800px;
+        height:750px;
+        background-color: white;
+    }
+
+    /* Text labels */
+    .text
+    {
+        text-decoration: none;
+        color: black;
+    }
+
+    #legend
+    {
+        float: left;
+        width: 250px;
+        height:1000px;
+    }
+
+    #legend div
+    {
+        height: 25px;
+    }
+
+    #legend span
+    {
+        margin: 5px 5px 5px 0;
+    }
+    .subway-map span
+    {
+        margin: 5px 5px 5px 0;
+    }
+ 
+    </style>
+</head>
+<body>
+	<h2>
+    	{{map}}    					
+    </h2>
+	<form id="id-form-ride" class="form-inline" action=''>			  			  	
+		  <label class="checkbox">
+		   {% trans 'From : ' %}
+		   		<select id="search-from"  class="span1">		                
+					{% for s in stops %}		                
+						<option>{{s}}</option>
+					{% endfor %}
+					<option selected="selected">--</option>
+	              </select>
+		  </label>
+		  <label class="checkbox">
+		   {% trans 'To : ' %}
+		   		<select id="search-to"  class="span1">
+		   			{% for s in stops %}		                
+						<option>{{s}}</option>
+					{% endfor %}	                
+					<option selected="selected">--</option>
+	              </select>
+		  </label>
+		  <button id="btn-ride" type="submit" class="btn">Ride</button>
+	</form>
+    <div class="subway-map" data-columns="20" data-rows="18" data-cellSize="40" data-legendId="legend" data-textClass="text" data-gridNumbers="true" data-grid="false" data-lineWidth="8">
+        {% for l in lines %}	
+			<ul data-color="{{l.color}}" data-label="{{l}}">
+			{% for s in l.get_stops %}	
+				<li data-coords="{{s.column}},{{s.raw}}" data-marker="interchange">{{s}}</li>				
+			{% endfor %}
+			</ul>			
+		{% endfor %}
+		{% if path_stops %}
+			<ul data-color="#808080" data-label="path">
+			{% for s in path_stops %}	
+				<li data-coords="{{s.column}},{{s.raw}}" data-marker="interchange">{{s}}</li>				
+			{% endfor %}
+			</ul>
+		{% endif %}
+    </div>		
+    <div id="legend"></div>    	
+    <script type="text/javascript">
+        $(".subway-map").subwayMap({ debug: true });
+		$('#btn-ride').click(function(){												
+			var from = $('#search-from').val();
+			var to = $('#search-to').val();
+			var href = '/subways/ride/boston/' + from + '/' + to + '/';
+			$("#id-form-ride").attr('action', href);						
+		});		
+    </script>
+</body>
+</html>
