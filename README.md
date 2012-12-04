@@ -10,3 +10,5 @@ Features:
  - longest_ride
  
 It uses the subway map jquery extension.
+
+For a live example : http://mourafiq.com/subways/boston/ (it's a toy to play with)
