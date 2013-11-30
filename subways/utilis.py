@@ -1,14 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Jav 10, 2012
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2012
-
-other contributers:
-'''
-
 def shortest_path_search(start, goal):
     """Find the shortest path from start state to a state
     such that is_goal(state) is true."""

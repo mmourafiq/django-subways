@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Jav 10, 2012
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2012
-
-other contributers:
-'''
 from django.shortcuts import render_to_response
 from django.template import RequestContext, Context, loader
 from subways.models import Map, Line, Stop

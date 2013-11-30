@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Jav 10, 2012
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2012
-
-other contributers:
-'''
 from django.conf.urls import patterns, include, url 
 from subways import views as subways
 

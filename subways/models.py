@@ -1,13 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-Created on Jav 10, 2012
-
-@author: Mourad Mourafiq
-
-@copyright: Copyright © 2012
-
-other contributers:
-'''
 import collections
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.db import models
